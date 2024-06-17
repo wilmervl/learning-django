@@ -1,20 +1,23 @@
 import datetime
 from django.http import HttpResponse
-from django.template import Template, Context
+from django.template import Template, Context, loader
 
 def home(request):
-  doc_externo = open("C:/Users/Wilmer/Dev/@Python/@Django/learning-django/learning/templates/index.html")
-  plt = Template(doc_externo.read())
-  doc_externo.close()
+  # doc_externo = open("./learning/templates/index.html")
+  # plt = Template(doc_externo.read())
+  # doc_externo.close()
 
   usuario = { 
     "nombre_persona": "nombre", 
     "apellido": "Juan",
-    "now": datetime.datetime.now()
+    "now": datetime.datetime.now(),
+    "articles":["sapato","camisa","blusa","medias","polo"]
   }
 
+  doc_externo = loader.get_template('index.html')
   ctx = Context(usuario)
 
-  document = plt.render(ctx)
+  # document = plt.render(ctx)
+  document = doc_externo.render(ctx)
 
   return HttpResponse(document)

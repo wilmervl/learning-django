@@ -7,5 +7,17 @@
 <body>
   <h1>Hola desde la Plantilla {{nombre_persona}}</h1>
   <p>{{apellido}} now day: {{now.day}} / {{now.month}} / {{now.year}}</p>
+  <ul>
+    <li>{{articles.2}}</li>
+    {# comentario #}
+    {% if  articles %}
+      {% for article in articles%}
+        <li>{{article|upper}}</li>
+        <li>{{article|first|upper}}</li>
+      {% endfor %}
+    {% else %}
+      <mark>No hay elementos que mostrar</mark>
+    {% endif %}
+  </ul>
 </body>
 </html>
